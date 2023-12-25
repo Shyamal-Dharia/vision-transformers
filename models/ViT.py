@@ -97,11 +97,12 @@ class multi_head_attention_block(nn.Module):
         """
         x = self.layer_norm(x)
 
-        attention_output, _ = self.multi_head_attention(query = x,
+        attention_output, attention_output_weights = self.multi_head_attention(query = x,
                                                         key = x,
                                                         value = x,
-                                                        need_weights = False)
-        return attention_output
+                                                        need_weights = True)
+        
+        return attention_output, attention_output_weights
 
 
 class MLP_block(nn.Module):
@@ -189,12 +190,13 @@ class transformer_encoder_block(nn.Module):
 
         """
         # Apply the multi-head self-attention block with a residual connection.
-        x = self.msa_block(x) + x
+        attention_output, attention_output_weights = self.msa_block(x)
+        x = x + attention_output 
 
         # Apply the MLP block with a residual connection.
         x = self.mlp_block(x) + x
 
-        return x
+        return x , attention_output_weights
 
 class ViT(nn.Module):
     """Vision Transformer (ViT) model for image classification.
@@ -303,17 +305,15 @@ class ViT(nn.Module):
         # Apply embedding dropout.
         x = self.embedding_dropout(x)
 
-        # Apply transformer encoder layers.
-        x = self.transformer_encoder(x)
+        attention_scores = []
+
+        for transformer_encoder_block in self.transformer_encoder:
+            x, attention_output_weights = transformer_encoder_block(x)
+          
+            attention_scores.append(attention_output_weights)
 
         # Apply classifier layer.
         x = self.classifier(x[:, 0])
 
-        return x
-
-
-
-
-
-
+        return x, attention_scores
 
