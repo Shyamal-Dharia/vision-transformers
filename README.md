@@ -32,7 +32,7 @@ To get started with this repository, ensure you have the following dependencies 
     - Check out the architecture specifications and choose the one that best suits your task.
 
 4. **Train model without pretrained weights:**
-    - Check out `example.py`, it has some examples on how to use ViT for images as well as time-series classification.
+    - Check out `examples.py`, it has some examples on how to use ViT for images as well as time-series classification.
 
 
 ## Results
