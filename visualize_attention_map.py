@@ -172,7 +172,7 @@ def plot_attention_and_save(img, attention):
         plt.imshow(fig, cmap='inferno')
         plt.title(text[i])
         plt.colorbar()
-
+        plt.axis('off')
     plt.savefig("overview.png")
     plt.close()
 
@@ -182,6 +182,7 @@ def plot_attention_and_save(img, attention):
         plt.imshow(attention[i], cmap='inferno')
         plt.title(f"Head n: {i+1}")
         plt.colorbar()
+        plt.axis('off')
 
     plt.tight_layout()
     plt.savefig("individual_heads.png")
