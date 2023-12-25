@@ -1,6 +1,6 @@
 
 import os
-from going_modular.going_modular import engine
+from modules import engine
 import torch
 import torchvision
 from torchvision import datasets
@@ -80,4 +80,4 @@ pretrained_vit_results = engine.train(model=pretrained_vit,
                                       epochs=NUM_EPOCHS,
                                       device=device)
 # save the model 
-torch.save(pretrained_vit, "ViT_model.pth")
+torch.save(obj = pretrained_vit.state_dict(), f = "ViT_model.pth")
