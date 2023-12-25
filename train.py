@@ -8,6 +8,12 @@ from torch.utils.data import DataLoader, random_split
 import argparse
 
 def parse_args():
+    """
+    Parse command-line arguments for training ViT model on datasets.
+
+    Returns:
+        argparse.Namespace: Parsed command-line arguments.
+    """
     parser = argparse.ArgumentParser(description="Train ViT model on Caltech101 dataset")
     parser.add_argument('--epochs', type=int, default=5, help='Number of training epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size for training')
@@ -15,6 +21,7 @@ def parse_args():
     parser.add_argument('--data_folder', type=str, default='data/caltech101/101_ObjectCategories/', 
                         help='Path to the folder where data is downloaded')
     return parser.parse_args()
+
 
 args = parse_args()
 
