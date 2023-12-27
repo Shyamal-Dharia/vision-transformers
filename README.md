@@ -56,3 +56,8 @@ Prediction from the model: cup
 ## Contribution
 Contributions to this repository are welcome! Whether you want to add new ViT architectures, share your fine-tuning results, or improve the documentation.
 
+## License
+
+This project is licensed under the [MIT License](https://github.com/Shyamal-Dharia/vision-transformers/blob/main/LICENSE) - see the [LICENSE](https://github.com/Shyamal-Dharia/vision-transformers/blob/main/LICENSE) file for details.
+
+
